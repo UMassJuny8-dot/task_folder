@@ -2,20 +2,19 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-import platform
+import matplotlib.font_manager as fm
 
 # ----------------------------------------
-# 1. 한글 폰트 및 페이지 설정
+# 1. 한글 폰트 및 페이지 설정 (수정됨)
 # ----------------------------------------
 st.set_page_config(page_title="무역 분석 대시보드", layout="wide")
 
-# OS별 한글 폰트 설정 (한글 깨짐 방지)
-if platform.system() == 'Windows':
-    plt.rc('font', family='Malgun Gothic')
-elif platform.system() == 'Darwin':
-    plt.rc('font', family='AppleGothic')
-else:
-    plt.rc('font', family='NanumGothic') # 리눅스(Streamlit Cloud 등)용
+# 윈도우 '맑은 고딕' 폰트 경로 직접 강제 지정
+font_path = "C:/Windows/Fonts/malgun.ttf"
+font_name = fm.FontProperties(fname=font_path).get_name()
+plt.rc('font', family=font_name)
+
+# 마이너스 기호(-) 깨짐 방지
 plt.rcParams['axes.unicode_minus'] = False
 
 # ----------------------------------------
