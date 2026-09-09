@@ -9,13 +9,15 @@ import platform
 # ----------------------------------------
 st.set_page_config(page_title="무역 분석 대시보드", layout="wide")
 
-# OS별 한글 폰트 설정 (한글 깨짐 방지)
-if platform.system() == 'Windows':
+# OS별로 폰트를 다르게 설정
+system_os = platform.system()
+if system_os == 'Windows':
     plt.rc('font', family='Malgun Gothic')
-elif platform.system() == 'Darwin':
+elif system_os == 'Darwin': # Mac
     plt.rc('font', family='AppleGothic')
-else:
-    plt.rc('font', family='NanumGothic') # 리눅스(Streamlit Cloud 등)용
+else: # Linux (Streamlit Cloud)
+    plt.rc('font', family='NanumGothic')
+
 plt.rcParams['axes.unicode_minus'] = False
 
 # ----------------------------------------
