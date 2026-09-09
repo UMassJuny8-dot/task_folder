@@ -1,5 +1,4 @@
 import streamlit as st
-import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -8,25 +7,23 @@ import urllib.request
 import os
 
 # ----------------------------------------
-# 1. 한글 폰트 및 페이지 설정 (자동 다운로드 방식 적용)
+# 1. 한글 폰트 및 페이지 설정 (URL 수정됨)
 # ----------------------------------------
 st.set_page_config(page_title="무역 분석 대시보드", layout="wide")
 
 @st.cache_resource
 def set_korean_font():
-    font_url = 'https://github.com/googlefonts/nanumgothic/raw/main/fonts/NanumGothic-Regular.ttf'
+    # 올바른 폰트 다운로드 주소로 변경
+    font_url = 'https://raw.githubusercontent.com/google/fonts/main/ofl/nanumgothic/NanumGothic-Regular.ttf'
     font_path = 'NanumGothic.ttf'
     
-    # 폰트 파일이 없으면 깃허브에서 다운로드
     if not os.path.exists(font_path):
         urllib.request.urlretrieve(font_url, font_path)
         
-    # 다운로드한 폰트를 matplotlib에 적용
     font_name = fm.FontProperties(fname=font_path).get_name()
     plt.rc('font', family=font_name)
     plt.rcParams['axes.unicode_minus'] = False
 
-# 폰트 설정 함수 실행
 set_korean_font()
 
 # ----------------------------------------
